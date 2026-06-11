@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Manage Users | FindJob{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="dash-card d-flex justify-content-between align-items-center border-bottom pb-3">
+            <h2 class="fw-bold mb-0" style="color: var(--text-dark-espresso);">Manage Users</h2>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary btn-sm px-3">Back to Admin</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex flex-column gap-3">
+            {% for user in users %}
+            <div class="job-card border border-dark d-flex justify-content-between align-items-center p-4">
+                <div>
+                    <h5 class="fw-bold mb-1" style="color: var(--text-dark-espresso);">{{ user.name }}</h5>
+                    <p class="mb-0 text-muted">{{ user.email }}</p>
+                </div>
+                <span class="badge bg-secondary px-3 py-2 text-uppercase">{{ user.role }}</span>
+            </div>
+            {% else %}
+            <p class="text-muted text-center mt-4">No users found in the system.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

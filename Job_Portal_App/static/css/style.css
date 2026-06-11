@@ -1,0 +1,191 @@
+/* --- Global Reset & Fonts --- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: 'Inter', Arial, sans-serif;
+}
+a { text-decoration: none; transition: transform .18s ease; }
+button { transition: transform .18s ease; cursor: pointer; }
+button:hover, a:hover { transform: translateY(-2px); }
+
+/* --- Theme: Home Page (Dark) --- */
+body.home-theme {
+  background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%);
+  color: #e5e7eb;
+  padding: 24px;
+}
+.hero {
+  width: min(720px, 100%);
+  background: rgba(17,24,39,.9);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 24px;
+  padding: 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+}
+.hero h1 { margin: 0 0 12px; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; }
+.hero p { margin: 0 0 28px; color: #94a3b8; font-size: 1.05rem; line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 14px; font-weight: 700; border: 1px solid transparent; }
+.btn.primary { background: linear-gradient(135deg, #22c55e, #16a34a); color: #052e16; box-shadow: 0 14px 30px rgba(34,197,94,.25); }
+.btn.secondary { background: rgba(255,255,255,.03); color: #e5e7eb; border-color: rgba(255,255,255,.08); }
+
+/* --- Theme: Auth Pages (Light) --- */
+body.light-theme {
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 20px;
+}
+.auth-card {
+  width: min(520px, 100%);
+  background: white;
+  border-radius: 16px;/* --- PREMIUM WARM PALETTE --- */
+:root {
+  --bg-warm-white: #FDFBF7;
+  --text-dark-espresso: #2C221E;
+  --text-muted: #6B5E59;
+  --primary-rust: #C05621; /* Warm, saturated, professional */
+  --primary-rust-hover: #9C4221;
+  --card-border: #EBE6E0;
+  --accent-gold: #D69E2E;
+}
+
+body {
+  background-color: var(--bg-warm-white);
+  color: var(--text-dark-espresso);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography & Links */
+a {
+  color: var(--primary-rust);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: var(--primary-rust-hover);
+}
+
+/* Custom Navbar */
+.navbar-custom {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 2px 10px rgba(44, 34, 30, 0.03);
+  padding: 1rem 0;
+}
+.navbar-brand {
+  font-weight: 800;
+  color: var(--primary-rust) !important;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+.nav-link {
+  font-weight: 500;
+  color: var(--text-muted) !important;
+}
+.nav-link:hover {
+  color: var(--text-dark-espresso) !important;
+}
+
+/* Custom Buttons */
+.btn-primary-warm {
+  background-color: var(--primary-rust);
+  border-color: var(--primary-rust);
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.btn-primary-warm:hover {
+  background-color: var(--primary-rust-hover);
+  border-color: var(--primary-rust-hover);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(192, 86, 33, 0.2);
+}
+.btn-outline-warm {
+  color: var(--primary-rust);
+  border: 1px solid var(--primary-rust);
+  font-weight: 600;
+  background: transparent;
+}
+.btn-outline-warm:hover {
+  background-color: var(--primary-rust);
+  color: #FFFFFF;
+}
+
+/* Elegant Cards */
+.job-card, .auth-card, .dash-card {
+  background: #FFFFFF;
+  border: 1px solid #000000; /* Solid black border */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(44, 34, 30, 0.04);
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(44, 34, 30, 0.08);
+}
+
+/* Form Styling */
+.form-control, .form-select {
+  border: 1px solid black ;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: var(--bg-warm-white);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-rust);
+  box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.15);
+  background-color: #FFFFFF;
+}
+
+/* Badges */
+.badge-warm {
+  background-color: #FEEBC8;
+  color: #9C4221;
+  font-weight: 600;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+}
+  padding: 36px;
+  box-shadow: 0 16px 40px rgba(15,23,42,.08);
+  border: 1px solid #e2e8f0;
+}
+.auth-card h1 { margin-top: 0; font-size: 1.8rem; color: #0f172a; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem; }
+.form-group input { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
+.form-group input:focus { outline: none; border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2,132,199,.1); }
+.auth-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; }
+.auth-btn.green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.auth-btn.blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.links { margin-top: 20px; text-align: center; }
+.links a { color: #0284c7; font-weight: 600; margin: 0 10px; }
+
+/* --- Theme: Dashboard --- */
+body.dashboard-theme {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+.dash-card {
+  width: min(800px, 100%);
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+}
+.dash-card h1 { margin-top: 0; font-size: 2rem; color: #0f172a; text-align: center; }
+.info-box { background: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 8px; margin: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+.job-list { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+.job-item { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: #f8fafc; }
+.job-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.05); }
+.job-title { font-size: 1.1rem; font-weight: 700; margin: 0 0 8px 0; }
+.job-meta { font-size: 0.9rem; color: #64748b; margin: 0 0 12px 0; display: flex; gap: 16px; }
+.btn-apply { background: #10b981; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; display: inline-block; }
+.btn-secondary-dash { background: #e2e8f0; color: #0f172a; padding: 12px 24px; border-radius: 8px; font-weight: 700; border: none; }

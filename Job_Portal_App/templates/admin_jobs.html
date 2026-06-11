@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Moderate Jobs | FindJob{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="dash-card d-flex justify-content-between align-items-center border-bottom pb-3">
+            <h2 class="fw-bold mb-0" style="color: var(--text-dark-espresso);">Moderate Jobs</h2>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary btn-sm px-3">Back to Admin</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex flex-column gap-3">
+            {% for job in jobs %}
+            <div class="job-card border border-dark p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-9">
+                        <h5 class="fw-bold mb-1" style="color: var(--text-dark-espresso);">{{ job.title }}</h5>
+                        <p class="mb-2 text-muted small">Posted by: <strong class="text-dark">{{ job.employer_name }}</strong> ({{ job.company }})</p>
+                        <span class="badge-warm px-2 py-1">{{ job.category }}</span>
+                    </div>
+                    <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                        <form method="POST" class="m-0">
+                            <input type="hidden" name="job_id" value="{{ job.id }}">
+                            <button type="submit" class="btn btn-danger w-100 fw-bold" onclick="return confirm('Delete this job listing permanently?');">Remove Job</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-muted text-center mt-4">No jobs have been posted yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

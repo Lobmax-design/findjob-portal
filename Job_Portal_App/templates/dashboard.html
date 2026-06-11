@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | FindJob{% endblock %}
+
+{% block content %}
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="dash-card d-flex justify-content-between align-items-center bg-white">
+            <div>
+                <h2 class="mb-1 fw-bold">Dashboard</h2>
+                <p class="mb-0 text-muted">Signed in as <strong>{{ email }}</strong> ({{ session.user.role | title }})</p>
+            </div>
+            
+            {% if session.user.role == 'employer' %}
+                <a href="{{ url_for('post_job') }}" class="btn btn-primary-warm">+ Post New Job</a>
+            {% elif session.user.role == 'seeker' %}
+                <a href="{{ url_for('search_jobs') }}" class="btn btn-primary-warm">Explore Open Roles</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="fw-bold mb-4">Latest Opportunities</h4>
+        
+        <div class="d-flex flex-column gap-3">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <h4 class="fw-bold mb-0" style="color: var(--text-dark-espresso);">{{ job.title }}</h4>
+                            {% if session.user.role == 'employer' and job.employer_id == session.user.id %}
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle">Your Listing</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-flex gap-3 mb-3 text-muted" style="font-size: 0.95rem;">
+                            <span><i class="bi bi-building"></i> {{ job.company }}</span>
+                            <span><i class="bi bi-geo-alt"></i> {{ job.location }}</span>
+                            <span class="badge-warm px-2 py-1">{{ job.category }}</span>
+                        </div>
+                        
+                        <p class="mb-md-0 text-muted" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ job.description }}
+                        </p>
+                    </div>
+                    
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <h5 class="fw-bold text-success mb-3">{{ job.salary }}</h5>
+                        {% if session.user.role == 'seeker' %}
+                            <a href="{{ url_for('job_detail', id=job.id) }}" class="btn btn-outline-warm w-100 w-md-auto">View Details</a>
+                        {% elif session.user.role == 'employer' and job.employer_id == session.user.id %}
+                            <a href="{{ url_for('edit_job', id=job.id) }}" class="btn btn-outline-secondary w-100 w-md-auto">Manage</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="dash-card text-center py-5">
+                <h5 class="text-muted">No opportunities available at the moment.</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

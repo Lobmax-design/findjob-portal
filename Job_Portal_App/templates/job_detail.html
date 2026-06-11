@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }} | FindJob{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="dash-card mb-4">
+            
+            <div class="border-bottom pb-4 mb-4" style="border-color: var(--card-border) !important;">
+                <h1 class="fw-bold mb-3" style="color: var(--text-dark-espresso);">{{ job.title }}</h1>
+                <div class="d-flex flex-wrap gap-4 text-muted">
+                    <span><strong style="color: var(--text-dark-espresso);">Company:</strong> {{ job.company }}</span>
+                    <span><strong style="color: var(--text-dark-espresso);">Location:</strong> {{ job.location }}</span>
+                    <span><strong style="color: var(--text-dark-espresso);">Salary:</strong> <span class="text-success fw-bold">{{ job.salary }}</span></span>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mb-3" style="color: var(--text-dark-espresso);">Job Description</h4>
+            <p style="color: var(--text-muted); line-height: 1.8; white-space: pre-wrap;">{{ job.description }}</p>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
+                
+                {% if session.user and session.user.role == 'seeker' %}
+                    {% if has_applied %}
+                        <button disabled class="btn btn-secondary px-4 py-2 fw-bold" style="cursor: not-allowed; background-color: #E2E8F0; color: #64748B; border: none;">✅ Application Submitted</button>
+                    {% else %}
+                        <form action="{{ url_for('apply', job_id=job.id) }}" method="POST" class="m-0">
+                            <button type="submit" class="btn btn-primary-warm px-4 py-2">Submit Application</button>
+                        </form>
+                    {% endif %}
+                {% elif session.user and session.user.role == 'employer' %}
+                    <p class="text-muted fst-italic mb-0">Employers cannot apply for jobs.</p>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-primary-warm px-4 py-2">Log in to Apply</a>
+                {% endif %}
+
+                <a href="{{ url_for('search_jobs') }}" class="ms-auto fw-bold" style="color: var(--text-muted);">← Back to Search</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

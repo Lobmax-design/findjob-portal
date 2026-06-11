@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}FindJob - Discover Your Next Move{% endblock %}
+
+{% block content %}
+<div class="row align-items-center min-vh-75 py-5">
+    <div class="col-lg-6 text-center text-lg-start pe-lg-5">
+        <span class="badge-warm mb-6 d-inline-block">Built for Professionals</span>
+        <h1 class="display-4 fw-bold mb-4" style="color: var(--text-dark-espresso);">
+            Find the job that fits your life.
+        </h1>
+        <p class="lead mb-5" style="color: var(--text-muted); font-size: 1.2rem; line-height: 1.6;">
+            Connect with top employers, manage your applications seamlessly, and discover opportunities curated specifically for your skill set.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-5 py-3">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-warm btn-lg px-5 py-3">Sign In</a>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 mt-5 mt-lg-0 d-none d-lg-block">
+        <div class="position-relative">
+            <div class="dash-card p-4 mb-3 position-relative z-1" style="transform: translateX(-20px);">
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <div style="width: 40px; height: 40px; background: #FEEBC8; border-radius: 8px;"></div>
+                    <div>
+                        <h5 class="mb-0 fw-bold">Senior UI/UX Designer</h5>
+                        <small class="text-muted">CreativePulse Agency • Mumbai</small>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-card p-4 position-relative z-2 shadow-lg" style="transform: translateX(20px) translateY(-20px);">
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <div style="width: 40px; height: 40px; background: #E2E8F0; border-radius: 8px;"></div>
+                    <div>
+                        <h5 class="mb-0 fw-bold">Full-Stack AI Engineer</h5>
+                        <small class="text-muted">Nexus Machine Learning • Remote</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

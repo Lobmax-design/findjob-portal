@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Search Jobs | FindJob{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="dash-card">
+            <h2 class="fw-bold mb-4" style="color: var(--text-dark-espresso);">Search Jobs</h2>
+            
+            <form method="GET" action="{{ url_for('search_jobs') }}" class="row g-3 align-items-end p-4 rounded-3" style="background-color: var(--bg-warm-white); border: 1px solid var(--card-border);">
+                <div class="col-md-3">
+                    <label class="form-label fw-bold text-muted small">Keyword</label>
+                    <input type="text" name="keyword" value="{{ keyword }}" class="form-control" placeholder="Title or company...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold text-muted small">Location</label>
+                    <input type="text" name="location" value="{{ location }}" class="form-control" placeholder="City or remote...">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold text-muted small">Category</label>
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        <option value="IT" {% if category == 'IT' %}selected{% endif %}>IT & Software</option>
+                        <option value="Finance" {% if category == 'Finance' %}selected{% endif %}>Finance</option>
+                        <option value="Marketing" {% if category == 'Marketing' %}selected{% endif %}>Marketing</option>
+                        <option value="Design" {% if category == 'Design' %}selected{% endif %}>Design</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary-warm w-100">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex flex-column gap-3">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="row align-items-center">
+                    <div class="col-md-9">
+                        <h4 class="fw-bold mb-2" style="color: var(--text-dark-espresso);">{{ job.title }}</h4>
+                        <div class="d-flex flex-wrap gap-3 mb-2 text-muted" style="font-size: 0.95rem;">
+                            <span>🏢 {{ job.company }}</span>
+                            <span>📍 {{ job.location }}</span>
+                            <span class="text-success fw-bold">💰 {{ job.salary }}</span>
+                            <span class="badge-warm px-2 py-1">{{ job.category }}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                        <a href="{{ url_for('job_detail', id=job.id) }}" class="btn btn-outline-warm w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="dash-card text-center py-5">
+                <h5 class="text-muted">No jobs match your search filters.</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
